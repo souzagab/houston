@@ -8,11 +8,11 @@ default: &default
 
 development:
   <<: *default
-  database: smash_development
+  database: houston_development
 
 test:
   <<: *default
-  database: smash_test
+  database: houston_test
 
 production:
   <<: *default
