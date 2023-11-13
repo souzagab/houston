@@ -19,7 +19,19 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ]
+  gem "debug", platforms: %i[mri windows]
+
+  gem "rspec-rails", "~> 6.0"
+  gem "shoulda-matchers", "~> 5.3"
+  gem "factory_bot_rails", "~> 6.2"
+  gem "bullet", "~> 7.1"
+  gem "annotate", "~> 3.2"
+  gem "faker", "~> 3.2"
+
+  gem "rubocop", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
+  gem "rubocop-performance", require: false
 end
 
 group :development do
