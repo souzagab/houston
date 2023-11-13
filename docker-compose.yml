@@ -1,0 +1,30 @@
+# Development only!
+
+version: '3'
+
+volumes:
+  pg_data:
+
+networks:
+  houston:
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=secret
+    ports:
+      - "5432:5432"
+    networks:
+      - houston
+
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: redis
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - houston
