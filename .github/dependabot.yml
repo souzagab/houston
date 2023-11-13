@@ -1,0 +1,25 @@
+version: 2
+
+updates:
+  - package-ecosystem: bundler
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3
+    versioning-strategy: increase-if-necessary
+    allow:
+      - dependency-type: direct
+      - dependency-type: indirect
+    labels:
+      - dependencies
+    reviewers:
+      - souzagab
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    labels:
+      - dependencies
+    reviewers:
+      - souzagab
