@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_221457) do
 
   create_table "planets", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "distance_to_earth", null: false, comment: "Distance in megameters (1mm = 1,000,000km)"
+    t.bigint "distance_to_earth", null: false, comment: "Distance in megameters (1mm = 1,000,000km)"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
