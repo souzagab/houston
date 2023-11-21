@@ -5,3 +5,6 @@
 
 # Create planets
 FactoryBot.create_list(:planet, 10)
+
+# Create agencies
+FactoryBot.create_list(:agency, 10)
