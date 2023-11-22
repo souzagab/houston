@@ -27,4 +27,5 @@ class Spacecraft < ApplicationRecord
   validates :type, presence: true
   validates :name, presence: true
   validates :speed, presence: true
+  validates :remaining_fuel, presence: true
 end

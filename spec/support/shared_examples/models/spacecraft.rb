@@ -33,6 +33,7 @@ RSpec.shared_examples Spacecraft do |spacecraft|
     it { is_expected.to validate_presence_of(:type) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:speed) }
+    it { is_expected.to validate_presence_of(:remaining_fuel) }
   end
 
   describe "factories" do
