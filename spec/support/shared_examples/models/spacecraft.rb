@@ -23,14 +23,15 @@ RSpec.shared_examples Spacecraft do |spacecraft|
 
   it { is_expected.to be_a(Spacecraft) }
 
-  context "associations" do
+  describe "associations" do
     it { is_expected.to belong_to(:agency) }
   end
 
-  context "validations" do
+  describe "validations" do
     subject { build(spacecraft) }
 
     it { is_expected.to validate_presence_of(:type) }
+    it { is_expected.to validate_inclusion_of(:type).in_array(Spacecraft::TYPES) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:speed) }
     it { is_expected.to validate_presence_of(:remaining_fuel) }

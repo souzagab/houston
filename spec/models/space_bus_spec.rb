@@ -21,6 +21,6 @@
 #
 #  fk_rails_...  (agency_id => agencies.id)
 #
-RSpec.describe SpaceBus, type: :model do
+RSpec.describe SpaceBus do
   it_behaves_like Spacecraft, :space_bus
 end

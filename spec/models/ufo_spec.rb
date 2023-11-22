@@ -21,6 +21,6 @@
 #
 #  fk_rails_...  (agency_id => agencies.id)
 #
-RSpec.describe UFO, type: :model do
+RSpec.describe UFO do
   it_behaves_like Spacecraft, :ufo
 end
