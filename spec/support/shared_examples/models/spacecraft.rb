@@ -19,13 +19,29 @@
 #
 #  fk_rails_...  (agency_id => agencies.id)
 #
-FactoryBot.define do
-  factory :spacecraft do
-    agency
+RSpec.shared_examples Spacecraft do |spacecraft|
 
-    type { nil } # Ensure the factory have a type
+  it { is_expected.to be_a(Spacecraft) }
 
-    name { Faker::Space.nasa_space_craft }
-    speed { Faker::Number.decimal(l_digits: 2, r_digits: 3) }
+  context "associations" do
+    it { is_expected.to belong_to(:agency) }
+  end
+
+  context "validations" do
+    subject { build(spacecraft) }
+
+    it { is_expected.to validate_presence_of(:type) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:speed) }
+  end
+
+  describe "factories" do
+    it "builds properly" do
+      expect(build(spacecraft)).to be_valid
+    end
+
+    it "creates properly" do
+      expect { create(spacecraft) }.not_to raise_error
+    end
   end
 end

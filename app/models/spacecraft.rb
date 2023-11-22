@@ -21,8 +21,6 @@
 #
 # STI model for spacecrafts
 class Spacecraft < ApplicationRecord
-  self.abstract_class = true
-
   belongs_to :agency
 
   validates :type, presence: true
