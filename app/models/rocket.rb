@@ -1,0 +1,2 @@
+class Rocket < Spacecraft
+end
