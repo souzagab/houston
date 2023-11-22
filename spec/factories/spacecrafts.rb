@@ -2,13 +2,15 @@
 #
 # Table name: spacecrafts
 #
-#  id                   :bigint           not null, primary key
-#  name                 :string           not null
-#  speed(Speed in km/h) :float            not null
-#  type                 :string           not null
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  agency_id            :bigint           not null
+#  id                                    :bigint           not null, primary key
+#  crew_capacity                         :integer          default(0), not null
+#  name                                  :string           not null
+#  remaining_fuel(Fuel capacity in days) :integer          not null
+#  speed(Speed in km/h)                  :float            not null
+#  type                                  :string           not null
+#  created_at                            :datetime         not null
+#  updated_at                            :datetime         not null
+#  agency_id                             :bigint           not null
 #
 # Indexes
 #
@@ -27,5 +29,7 @@ FactoryBot.define do
 
     name { Faker::Space.nasa_space_craft }
     speed { Faker::Number.decimal(l_digits: 2, r_digits: 3) }
+    crew_capacity { 0 }
+    remaining_fuel { Faker::Number.between(from: 0, to: 100) }
   end
 end

@@ -32,6 +32,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_234251) do
     t.string "type", null: false
     t.string "name", null: false
     t.float "speed", null: false, comment: "Speed in km/h"
+    t.integer "remaining_fuel", null: false, comment: "Fuel capacity in days"
+    t.integer "crew_capacity", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["agency_id"], name: "index_spacecrafts_on_agency_id"

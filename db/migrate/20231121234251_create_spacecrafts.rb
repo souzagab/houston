@@ -7,6 +7,8 @@ class CreateSpacecrafts < ActiveRecord::Migration[7.1]
 
       t.string :name, null: false
       t.float :speed, null: false, comment: "Speed in km/h"
+      t.integer :remaining_fuel, null: false, comment: "Fuel capacity in days"
+      t.integer :crew_capacity,  null: false, default: 0
 
       t.timestamps
     end
