@@ -39,4 +39,42 @@ class Mission < ApplicationRecord
   validates :duration, presence: true
   validates :description, presence: true
   validates :status, presence: true
+
+  with_options if: :status_changed_to_started? do
+    validate :ensure_status_was_scheduled
+  end
+
+  with_options if: :status_changed_to_canceled? do
+    validate :ensure_status_was_scheduled_or_started
+  end
+
+  with_options if: :status_changed_to_failed? do
+    validate :ensure_status_was_started
+  end
+
+  private
+
+  def status_changed_to_started?
+    status_changed? && started?
+  end
+
+  def status_changed_to_canceled?
+    status_changed? && canceled?
+  end
+
+  def status_changed_to_failed?
+    status_changed? && failed?
+  end
+
+  def ensure_status_was_scheduled
+    errors.add(:status, "can only be changed from scheduled to started") unless status_was == "scheduled"
+  end
+
+  def ensure_status_was_started
+    errors.add(:status, "can only be changed from started to failed") unless status_was == "started"
+  end
+
+  def ensure_status_was_scheduled_or_started
+    errors.add(:status, "can only be changed from scheduled or started to canceled") unless %w[scheduled started].include?(status_was)
+  end
 end

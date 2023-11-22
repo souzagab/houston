@@ -26,27 +26,46 @@
 FactoryBot.define do
   factory :mission do
     planet
-    spacecraft { create(%i[rocket space_bus ufo].sample) }
+
+    spacecraft factory: %i[rocket space_bus ufo].sample
+
+    scheduled
 
     start_date { Faker::Date.between(from: 1.day.since, to: 1.year.from_now) }
     duration { Faker::Number.between(from: 1, to: 100) }
     description { Faker::Lorem.paragraph }
-    status { "scheduled" }
+
+
+    trait :scheduled do
+      status { "scheduled" }
+    end
 
     trait :started do
+      skip_validation
+
       status { "started" }
     end
 
     trait :canceled do
+      skip_validation
+
       status { "canceled" }
     end
 
     trait :failed do
+      skip_validation
+
       status { "failed" }
     end
 
     trait :completed do
+      skip_validation
+
       status { "completed" }
+    end
+
+    trait :skip_validation do
+      to_create { |instance| instance.save(validate: false) }
     end
   end
 end
