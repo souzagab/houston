@@ -25,6 +25,7 @@ RSpec.shared_examples Spacecraft do |spacecraft|
 
   describe "associations" do
     it { is_expected.to belong_to(:agency) }
+    it { is_expected.to have_many(:missions) }
   end
 
   describe "validations" do
