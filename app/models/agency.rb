@@ -8,5 +8,7 @@
 #  updated_at :datetime         not null
 #
 class Agency < ApplicationRecord
+  has_many :spacecrafts, dependent: :destroy
+
   validates :name, presence: true
 end
