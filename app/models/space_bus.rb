@@ -21,14 +21,5 @@
 #
 #  fk_rails_...  (agency_id => agencies.id)
 #
-class Spacecraft < ApplicationRecord
-  TYPES = %w[Rocket SpaceBus UFO].freeze
-
-  belongs_to :agency
-
-  validates :type, presence: true
-  validates :type, inclusion: { in: TYPES }
-  validates :name, presence: true
-  validates :speed, presence: true
-  validates :remaining_fuel, presence: true
+class SpaceBus < Spacecraft
 end
