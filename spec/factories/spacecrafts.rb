@@ -31,5 +31,15 @@ FactoryBot.define do
     speed { Faker::Number.decimal(l_digits: 2, r_digits: 3) }
     crew_capacity { 0 }
     remaining_fuel { Faker::Number.between(from: 0, to: 100) }
+
+    transient do
+      missions_count { 1 }
+    end
+
+    trait :with_missions do
+      after(:create) do |spacecraft, evaluator|
+        create_list(:mission, evaluator.missions_count, spacecraft:)
+      end
+    end
   end
 end

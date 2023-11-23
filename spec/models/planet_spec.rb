@@ -9,6 +9,10 @@
 #  updated_at                                                    :datetime         not null
 #
 RSpec.describe Planet do
+  describe "associations" do
+    it { is_expected.to have_many(:missions) }
+  end
+
   describe "validations" do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:distance_to_earth) }

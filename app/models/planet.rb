@@ -11,6 +11,8 @@
 class Planet < ApplicationRecord
   CLOSEST_DISTANCE_TO_EARTH = 41 # Closest planet to Earth today (2023) is Venus at 41mm (megameters)
 
+  has_many :missions
+
   validates :name, presence: true
   validates :distance_to_earth, presence: true
   validates :distance_to_earth, numericality: { greater_than_or_equal_to: CLOSEST_DISTANCE_TO_EARTH }
