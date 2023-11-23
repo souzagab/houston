@@ -25,6 +25,6 @@ RSpec.describe Rocket do
   it_behaves_like Spacecraft, :rocket
 
   describe "associations" do
-    it { is_expected.to have_many(:payloads).inverse_of(:rocket).dependent(:destroy) }
+    it { is_expected.to have_many(:payloads).inverse_of(:spacecraft).dependent(:destroy) }
   end
 end

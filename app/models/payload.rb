@@ -18,7 +18,7 @@
 #  index_payloads_on_spacecraft  (spacecraft_type,spacecraft_id)
 #
 class Payload < ApplicationRecord
-  belongs_to :rocket, class_name: "Rocket", foreign_key: :spacecraft_id, inverse_of: :payloads
+  belongs_to :spacecraft, polymorphic: true, inverse_of: :payloads
 
   enum cargo: {
     fuel: "fuel",

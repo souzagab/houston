@@ -19,7 +19,7 @@
 #
 FactoryBot.define do
   factory :payload do
-    rocket
+    spacecraft factory: :rocket
 
     fuel
 

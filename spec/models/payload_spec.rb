@@ -19,7 +19,7 @@
 #
 RSpec.describe Payload do
   describe "associations" do
-    it { is_expected.to belong_to(:rocket).class_name("Rocket").inverse_of(:payloads) }
+    it { is_expected.to belong_to(:spacecraft).inverse_of(:payloads) }
   end
 
   describe "attributes" do

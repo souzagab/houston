@@ -25,7 +25,9 @@ class Spacecraft < ApplicationRecord
   TYPES = %w[Rocket SpaceBus UFO].freeze
 
   belongs_to :agency
-  has_many :missions, as: :spacecraft
+
+  has_many :missions, as: :spacecraft, inverse_of: :spacecraft, dependent: :restrict_with_error
+  has_many :payloads, as: :spacecraft, inverse_of: :spacecraft, dependent: :destroy
 
   validates :type, presence: true
   validates :type, inclusion: { in: TYPES }

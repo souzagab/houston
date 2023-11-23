@@ -22,5 +22,4 @@
 #  fk_rails_...  (agency_id => agencies.id)
 #
 class Rocket < Spacecraft
-  has_many :payloads, inverse_of: :rocket, dependent: :destroy
 end

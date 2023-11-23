@@ -25,7 +25,7 @@
 #
 class Mission < ApplicationRecord
   belongs_to :planet
-  belongs_to :spacecraft, polymorphic: true
+  belongs_to :spacecraft, polymorphic: true, inverse_of: :missions
 
   enum status: {
     scheduled: "scheduled",
