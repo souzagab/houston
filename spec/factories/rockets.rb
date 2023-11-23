@@ -22,7 +22,17 @@
 #  fk_rails_...  (agency_id => agencies.id)
 #
 FactoryBot.define do
-  factory :rocket, parent: :spacecraft do
+  factory :rocket, parent: :spacecraft, class: "Rocket" do
     type { "Rocket" }
+
+    trait :with_cargo do
+      transient do
+        payloads_count { 2 }
+      end
+
+      after(:create) do |rocket, evaluator|
+        create_list(:payload, evaluator.payloads_count, spacecraft: rocket, cargo: Payload.cargos.values.sample)
+      end
+    end
   end
 end

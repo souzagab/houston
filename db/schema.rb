@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_22_011920) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_23_000025) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "cargo_types", ["fuel", "trash", "probe", "satellite"]
   create_enum "mission_status", ["scheduled", "started", "canceled", "failed", "completed"]
 
   create_table "agencies", force: :cascade do |t|
@@ -37,6 +38,19 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_22_011920) do
     t.index ["planet_id"], name: "index_missions_on_planet_id"
     t.index ["spacecraft_type", "spacecraft_id"], name: "index_missions_on_spacecraft"
     t.index ["status"], name: "index_missions_on_status"
+  end
+
+  create_table "payloads", force: :cascade do |t|
+    t.string "spacecraft_type", null: false
+    t.bigint "spacecraft_id", null: false
+    t.enum "cargo", null: false, enum_type: "cargo_types"
+    t.string "name", null: false
+    t.float "weight", null: false, comment: "Cargo weight in Tons (1000kg)"
+    t.text "description", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cargo"], name: "index_payloads_on_cargo"
+    t.index ["spacecraft_type", "spacecraft_id"], name: "index_payloads_on_spacecraft"
   end
 
   create_table "planets", force: :cascade do |t|
