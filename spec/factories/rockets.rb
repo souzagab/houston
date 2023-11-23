@@ -22,7 +22,7 @@
 #  fk_rails_...  (agency_id => agencies.id)
 #
 FactoryBot.define do
-  factory :rocket, parent: :spacecraft do
+  factory :rocket, parent: :spacecraft, class: "Rocket" do
     type { "Rocket" }
   end
 end
