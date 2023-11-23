@@ -24,7 +24,12 @@
 RSpec.describe Rocket do
   it_behaves_like Spacecraft, :rocket
 
-  describe "associations" do
-    it { is_expected.to have_many(:payloads).inverse_of(:spacecraft).dependent(:destroy) }
+  describe "factories" do
+    describe "trait :with_cargo" do
+      subject(:rocket) { create(:rocket, :with_cargo) }
+
+      it { is_expected.to be_valid }
+      it { expect(rocket.payloads).not_to be_empty }
+    end
   end
 end

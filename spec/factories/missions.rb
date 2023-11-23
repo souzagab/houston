@@ -5,7 +5,6 @@
 #  id                         :bigint           not null, primary key
 #  description                :text             default(""), not null
 #  duration(Duration in days) :integer          not null
-#  spacecraft_type            :string           not null
 #  start_date                 :datetime         not null
 #  status                     :enum             default("scheduled"), not null
 #  created_at                 :datetime         not null
@@ -15,13 +14,14 @@
 #
 # Indexes
 #
-#  index_missions_on_planet_id   (planet_id)
-#  index_missions_on_spacecraft  (spacecraft_type,spacecraft_id)
-#  index_missions_on_status      (status)
+#  index_missions_on_planet_id      (planet_id)
+#  index_missions_on_spacecraft_id  (spacecraft_id)
+#  index_missions_on_status         (status)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (planet_id => planets.id)
+#  fk_rails_...  (spacecraft_id => spacecrafts.id)
 #
 FactoryBot.define do
   factory :mission do
