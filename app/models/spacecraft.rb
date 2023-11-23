@@ -26,8 +26,8 @@ class Spacecraft < ApplicationRecord
 
   belongs_to :agency
 
-  has_many :missions, as: :spacecraft, inverse_of: :spacecraft, dependent: :restrict_with_error
-  has_many :payloads, as: :spacecraft, inverse_of: :spacecraft, dependent: :destroy
+  has_many :missions, inverse_of: :spacecraft, dependent: :restrict_with_error
+  has_many :payloads, inverse_of: :spacecraft, dependent: :destroy
 
   validates :type, presence: true
   validates :type, inclusion: { in: TYPES }

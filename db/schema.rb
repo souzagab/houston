@@ -27,7 +27,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_000025) do
 
   create_table "missions", force: :cascade do |t|
     t.bigint "planet_id", null: false
-    t.string "spacecraft_type", null: false
     t.bigint "spacecraft_id", null: false
     t.datetime "start_date", null: false
     t.integer "duration", null: false, comment: "Duration in days"
@@ -36,12 +35,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_000025) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["planet_id"], name: "index_missions_on_planet_id"
-    t.index ["spacecraft_type", "spacecraft_id"], name: "index_missions_on_spacecraft"
+    t.index ["spacecraft_id"], name: "index_missions_on_spacecraft_id"
     t.index ["status"], name: "index_missions_on_status"
   end
 
   create_table "payloads", force: :cascade do |t|
-    t.string "spacecraft_type", null: false
     t.bigint "spacecraft_id", null: false
     t.enum "cargo", null: false, enum_type: "cargo_types"
     t.string "name", null: false
@@ -50,7 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_000025) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cargo"], name: "index_payloads_on_cargo"
-    t.index ["spacecraft_type", "spacecraft_id"], name: "index_payloads_on_spacecraft"
+    t.index ["spacecraft_id"], name: "index_payloads_on_spacecraft_id"
   end
 
   create_table "planets", force: :cascade do |t|
@@ -74,5 +72,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_000025) do
   end
 
   add_foreign_key "missions", "planets"
+  add_foreign_key "missions", "spacecrafts"
+  add_foreign_key "payloads", "spacecrafts"
   add_foreign_key "spacecrafts", "agencies"
 end

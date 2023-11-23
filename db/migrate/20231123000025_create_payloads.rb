@@ -3,7 +3,7 @@ class CreatePayloads < ActiveRecord::Migration[7.1]
     create_enum :cargo_types, %w[fuel trash probe satellite]
 
     create_table :payloads do |t|
-      t.references :spacecraft, polymorphic: true, null: false, index: true
+      t.references :spacecraft, null: false, foreign_key: true
 
       t.enum :cargo, enum_type: :cargo_types, null: false, index: true
 

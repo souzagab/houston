@@ -25,7 +25,8 @@ RSpec.shared_examples Spacecraft do |spacecraft|
 
   describe "associations" do
     it { is_expected.to belong_to(:agency) }
-    it { is_expected.to have_many(:missions) }
+    it { is_expected.to have_many(:missions).inverse_of(:spacecraft).dependent(:restrict_with_error) }
+    it { is_expected.to have_many(:payloads).inverse_of(:spacecraft).dependent(:destroy) }
   end
 
   describe "validations" do

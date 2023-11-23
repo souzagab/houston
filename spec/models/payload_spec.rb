@@ -6,16 +6,19 @@
 #  cargo                                 :enum             not null
 #  description                           :text             default(""), not null
 #  name                                  :string           not null
-#  spacecraft_type                       :string           not null
-#  weight(Cargo weight in Tons (1000kg)) :integer          not null
+#  weight(Cargo weight in Tons (1000kg)) :float            not null
 #  created_at                            :datetime         not null
 #  updated_at                            :datetime         not null
 #  spacecraft_id                         :bigint           not null
 #
 # Indexes
 #
-#  index_payloads_on_cargo       (cargo)
-#  index_payloads_on_spacecraft  (spacecraft_type,spacecraft_id)
+#  index_payloads_on_cargo          (cargo)
+#  index_payloads_on_spacecraft_id  (spacecraft_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (spacecraft_id => spacecrafts.id)
 #
 RSpec.describe Payload do
   describe "associations" do
