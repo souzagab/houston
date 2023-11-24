@@ -35,6 +35,8 @@ class Mission < ApplicationRecord
     completed: "completed"
   }
 
+  after_create :schedule_departure
+
   validates :start_date, presence: true
   validates :duration, presence: true
   validates :description, presence: true
@@ -76,5 +78,9 @@ class Mission < ApplicationRecord
 
   def ensure_status_was_scheduled_or_started
     errors.add(:status, "can only be changed from scheduled or started to canceled") unless %w[scheduled started].include?(status_was)
+  end
+
+  def schedule_departure
+    SpacecraftDepartureJob.set(wait_until: start_date).perform_later(self)
   end
 end
