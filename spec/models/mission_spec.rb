@@ -33,6 +33,19 @@ RSpec.describe Mission do
     it { is_expected.to define_enum_for(:status).backed_by_column_of_type(:enum).with_values(described_class.statuses) }
   end
 
+  describe "callbacks" do
+    describe "#schedule_departure" do
+      subject(:mission) { build(:mission, :scheduled) }
+
+      it "enqueues a departure job" do
+        expect { mission.save! }
+          .to have_enqueued_job(SpacecraftDepartureJob)
+          .with(mission)
+          .on_queue("spacecraft_departures")
+      end
+    end
+  end
+
   describe "validations" do
     it { is_expected.to validate_presence_of(:start_date) }
     it { is_expected.to validate_presence_of(:duration) }
