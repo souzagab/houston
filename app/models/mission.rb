@@ -40,6 +40,8 @@ class Mission < ApplicationRecord
   validates :description, presence: true
   validates :status, presence: true
 
+  validate :spacecraft_has_enough_fuel
+
   with_options if: :status_changed_to_started? do
     validate :ensure_status_was_scheduled
   end
@@ -76,5 +78,18 @@ class Mission < ApplicationRecord
 
   def ensure_status_was_scheduled_or_started
     errors.add(:status, "can only be changed from scheduled or started to canceled") unless %w[scheduled started].include?(status_was)
+  end
+
+  def spacecraft_has_enough_fuel
+    return if spacecraft.nil?
+
+    remaining_fuel_time = spacecraft.remaining_fuel * 24
+
+    speed_average = spacecraft.speed
+    distance_in_km = planet.distance_to_earth * 1_000_000
+
+    travel_time = distance_in_km / speed_average
+
+    errors.add(:spacecraft, "doesn't have enough fuel") if remaining_fuel_time < travel_time
   end
 end
