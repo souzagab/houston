@@ -14,6 +14,8 @@ gem "dotenv-rails", require: "dotenv/rails-now"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
+gem "sidekiq", "~> 7.2"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[windows jruby]
 
