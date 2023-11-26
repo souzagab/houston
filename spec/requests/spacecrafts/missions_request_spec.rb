@@ -1,4 +1,6 @@
 RSpec.describe "spacecrafts/missions" do
+  before { authorize_origin }
+
   describe "GET /index" do
     context "when spacecraft does not exist" do
       it "returns :not_found" do
