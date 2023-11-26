@@ -5,7 +5,8 @@ class ApplicationController < ActionController::API
 
   def authorize_origin!
     # TODO: If this api is a internal, we allow only server-to-server authentication
-    return if request.headers["HTTP_USER_AGENT"].include?("HoustonClient") || request.user_agent.include?("HoustonClient")
+    user_agent = "Houston::Client/"
+    return if request.headers["HTTP_USER_AGENT"].include?(user_agent) || request.user_agent.include?(user_agent)
 
     head(:unauthorized)
   end
