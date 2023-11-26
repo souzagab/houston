@@ -1,12 +1,3 @@
-GIT
-  remote: https://github.com/souzagab/paper_trail-background.rb.git
-  revision: e46ca497fb197f4836dd0d05cefd770bf581c1c2
-  branch: rails-7.1-support
-  specs:
-    paper_trail-background (1.1.0)
-      ar_after_transaction (~> 0.10.0)
-      paper_trail (>= 10)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -87,8 +78,6 @@ GEM
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
-    ar_after_transaction (0.10.0)
-      activerecord (>= 5.2.0, < 7.2)
     ast (2.4.2)
     base64 (0.2.0)
     bigdecimal (3.1.4)
@@ -293,7 +282,6 @@ DEPENDENCIES
   factory_bot_rails (~> 6.2)
   faker (~> 3.2)
   paper_trail (~> 15.1)
-  paper_trail-background!
   pg
   puma (>= 5.0)
   rails (~> 7.1.2)

@@ -17,7 +17,8 @@ gem "puma", ">= 5.0"
 gem "sidekiq", "~> 7.2"
 
 gem "paper_trail", "~> 15.1"
-gem "paper_trail-background", github: "souzagab/paper_trail-background.rb", branch: "rails-7.1-support"
+# TODO: Enable background jobs for paper_trail after rails 7.1 is supported
+# gem "paper_trail-background"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[windows jruby]
