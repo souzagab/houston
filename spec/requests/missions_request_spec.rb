@@ -1,4 +1,6 @@
 RSpec.describe "Missions" do
+  before { authorize_origin }
+
   describe "GET /missions" do
     let!(:missions) { create_list(:mission, 3) }
 
