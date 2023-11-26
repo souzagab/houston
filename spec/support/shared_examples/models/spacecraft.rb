@@ -20,8 +20,11 @@
 #  fk_rails_...  (agency_id => agencies.id)
 #
 RSpec.shared_examples Spacecraft do |spacecraft|
-
   it { is_expected.to be_a(Spacecraft) }
+
+  describe "auditing" do
+    it { is_expected.to be_versioned }
+  end
 
   describe "associations" do
     it { is_expected.to belong_to(:agency) }
