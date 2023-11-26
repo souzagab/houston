@@ -21,6 +21,10 @@
 #  fk_rails_...  (spacecraft_id => spacecrafts.id)
 #
 RSpec.describe Payload do
+  describe "auditing" do
+    it { is_expected.to be_versioned }
+  end
+
   describe "associations" do
     it { is_expected.to belong_to(:spacecraft).inverse_of(:payloads) }
   end

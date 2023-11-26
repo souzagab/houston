@@ -22,6 +22,8 @@
 #  fk_rails_...  (agency_id => agencies.id)
 #
 class Spacecraft < ApplicationRecord
+  has_paper_trail
+
   TYPES = %w[Rocket SpaceBus UFO].freeze
 
   belongs_to :agency

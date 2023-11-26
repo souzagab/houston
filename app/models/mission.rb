@@ -24,6 +24,8 @@
 #  fk_rails_...  (spacecraft_id => spacecrafts.id)
 #
 class Mission < ApplicationRecord
+  has_paper_trail
+
   belongs_to :planet
   belongs_to :spacecraft, inverse_of: :missions
 

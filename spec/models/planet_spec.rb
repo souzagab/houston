@@ -9,6 +9,10 @@
 #  updated_at                                                    :datetime         not null
 #
 RSpec.describe Planet do
+  describe "auditing" do
+    it { is_expected.to be_versioned }
+  end
+
   describe "associations" do
     it { is_expected.to have_many(:missions) }
   end

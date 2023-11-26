@@ -8,6 +8,8 @@
 #  updated_at :datetime         not null
 #
 class Agency < ApplicationRecord
+  has_paper_trail
+
   has_many :spacecrafts, dependent: :destroy
 
   validates :name, presence: true

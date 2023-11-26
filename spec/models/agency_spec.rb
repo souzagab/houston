@@ -8,11 +8,15 @@
 #  updated_at :datetime         not null
 #
 RSpec.describe Agency do
-  context "associations" do
+  describe "auditing" do
+    it { is_expected.to be_versioned }
+  end
+
+  describe "associations" do
     it { is_expected.to have_many(:spacecrafts).dependent(:destroy) }
   end
 
-  context "validations" do
+  describe "validations" do
     it { is_expected.to validate_presence_of(:name) }
   end
 end
